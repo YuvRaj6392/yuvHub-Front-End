@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
+export default function App() {
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
+  const data={
+    email:email,
+    password:password
+  }
+  const onFormSubmit=(e)=>{
+    e.preventDefault();
+    fetch('http://localhost:8080/api/login',{
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body:JSON.stringify(data)
+    }).then(res=>res.json()).then(data=>{
+    if(data.message.token)
+    {
+      console.log(data.message.token)
+      console.log('you will be successfully logged in and see the course from here!')
+    }
+    else
+    {
+      console.log('you will not be able to login!')
+    }
+    })
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <form  onSubmit={onFormSubmit} method='post'>
+    <input type="text" name="email" onInput={e=>setEmail(e.target.value)} />
+    <input type="text" name='password' onInput={e=>setPassword(e.target.value)} />
+    <input type="submit" />
+    </form>
     </div>
-  );
+  )
 }
-
-export default App;
