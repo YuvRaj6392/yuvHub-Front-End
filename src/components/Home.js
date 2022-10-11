@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 export default function Home() {
   const [data1,setData1]=useState("")
   const history=useNavigate();
@@ -57,7 +57,7 @@ export default function Home() {
     <p><span style={{fontWeight:'bold'}}>Video url:</span> <a target='_blank' rel="noreferrer" href={ele.videoUrl} alt=''>{ele.videoUrl}</a> </p>
     <p><span style={{fontWeight:'bold'}}>Notes url:</span> <a target='_blank' rel="noreferrer" href={ele.notesUrl} alt=''>{ele.notesUrl}</a> </p>
     <p><span style={{fontWeight:'bold'}}>Popularity:</span> {ele.popularity}</p>
-   
+    <p><Link to={`/login/home/${ele._id}`} className="btn btn-dark">Buy Course</Link></p>      
   </div>
 </div>
           </div>
