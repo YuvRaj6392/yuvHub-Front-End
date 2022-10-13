@@ -4,13 +4,16 @@ export default function Header() {
   useEffect(()=>{
     if(!localStorage.getItem('token'))
     {
+      document.getElementById('home').style.display='none';
       document.getElementById('logout').style.display='none';
       document.getElementById('login').style.display='block';
       document.getElementById('register').style.display='block';
 
+
     }
     else
     {
+      document.getElementById('home').style.display='block';
       document.getElementById('logout').style.display='block';
       document.getElementById('login').style.display='none';
       document.getElementById('register').style.display='none';
@@ -47,6 +50,7 @@ export default function Header() {
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
+    <Link className="btn btn-warning"  id='home' to='/login/home' >Home</Link>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         {/* <li className="nav-item">
@@ -63,6 +67,7 @@ export default function Header() {
        
       </ul>
       <form className="d-flex">
+      
         <Link className="btn btn-success"  id='login' to='/login' >Login</Link>
 
         <Link className=" ms-2 btn btn-success"  id='register' to='/register'>Register</Link>

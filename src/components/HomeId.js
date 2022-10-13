@@ -21,7 +21,16 @@ export default function HomeId() {
         
       }).then(res=>res.json()).then(data=>{
         console.log(data.message);
-        setPaymentMessage(data.message[0].title);
+        console.log(data)
+        if(data.message[0].title)
+        {
+          setPaymentMessage(data.message[0].title);
+        }
+        else
+        {
+          document.getElementsByClassName('container')[0].innerHTML=`<h1>404! Not Found</h1>`
+        }
+        
       })
     }
    })
